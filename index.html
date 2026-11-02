@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Une petite question ❤️</title>
+<style>
+body {
+  margin:0;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:Arial,sans-serif;
+  background:linear-gradient(135deg,#ffe0eb,#ffc2d8);
+  text-align:center;
+  color:#74364e;
+}
+.card {
+  background:white;
+  padding:35px 20px;
+  border-radius:25px;
+  width:85%;
+  max-width:380px;
+  box-shadow:0 10px 35px #b75a7650;
+}
+.heart {font-size:55px}
+h1 {font-size:25px}
+.buttons {
+  position:relative;
+  height:130px;
+  margin-top:25px;
+}
+button {
+  border:0;
+  border-radius:30px;
+  padding:14px 25px;
+  font-size:17px;
+  font-weight:bold;
+  color:white;
+}
+#yes {
+  background:#e85d82;
+  position:absolute;
+  left:8%;
+  top:35px;
+}
+#no {
+  background:#40ae83;
+  position:absolute;
+  right:8%;
+  top:35px;
+}
+#result {display:none}
+#result h2 {color:#e85d82}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="heart">🥺❤️</div>
+  <h1>Tu me boudes encore ?</h1>
+  <p>Réponds-moi sincèrement...</p>
+
+  <div class="buttons" id="buttons">
+    <button id="yes">Oui 🥺</button>
+    <button id="no">Non ❤️</button>
+  </div>
+
+  <div id="result">
+    <div class="heart">🥹💗</div>
+    <h2>Je savais que tu pouvais pas me bouder. ❤️</h2>
+    <p>Tu es précieuse pour moi. ❤️</p>
+  </div>
+</div>
+
+<script>
+const yes = document.getElementById("yes");
+const no = document.getElementById("no");
+const area = document.getElementById("buttons");
+
+function escapeButton() {
+  const maxX = area.clientWidth - yes.offsetWidth;
+  const maxY = area.clientHeight - yes.offsetHeight;
+  yes.style.left = Math.random() * maxX + "px";
+  yes.style.top = Math.random() * maxY + "px";
+}
+
+yes.addEventListener("pointerenter", escapeButton);
+yes.addEventListener("pointerdown", e => {
+  e.preventDefault();
+  escapeButton();
+});
+
+no.addEventListener("click", () => {
+  area.style.display = "none";
+  document.querySelector(".card > h1").style.display = "none";
+  document.querySelector(".card > p").style.display = "none";
+  document.getElementById("result").style.display = "block";
+});
+</script>
+</body>
+</html>
